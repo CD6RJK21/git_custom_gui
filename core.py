@@ -1,6 +1,7 @@
 # coding: utf-8
 import sys
 from subprocess import call, check_output
+
 from PyQt5.QtWidgets import QInputDialog
 
 sys._excepthook = sys.excepthook
