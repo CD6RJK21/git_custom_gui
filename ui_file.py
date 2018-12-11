@@ -1,0 +1,90 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'git_custom_gui_realise_1.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(899, 600)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(520, 0, 381, 561))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setObjectName("gridLayout")
+        self.console_output = QtWidgets.QPlainTextEdit(self.gridLayoutWidget)
+        self.console_output.setMinimumSize(QtCore.QSize(0, 454))
+        self.console_output.setReadOnly(True)
+        self.console_output.setObjectName("console_output")
+        self.gridLayout.addWidget(self.console_output, 2, 0, 1, 1)
+        self.label_console_manual = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.label_console_manual.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_console_manual.setObjectName("label_console_manual")
+        self.gridLayout.addWidget(self.label_console_manual, 0, 0, 1, 1)
+        self.console_input = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.console_input.setMinimumSize(QtCore.QSize(279, 0))
+        self.console_input.setObjectName("console_input")
+        self.gridLayout.addWidget(self.console_input, 1, 0, 1, 1)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 899, 21))
+        self.menubar.setObjectName("menubar")
+        self.menuRepository = QtWidgets.QMenu(self.menubar)
+        self.menuRepository.setObjectName("menuRepository")
+        self.menuBranch = QtWidgets.QMenu(self.menubar)
+        self.menuBranch.setObjectName("menuBranch")
+        self.menuCommit = QtWidgets.QMenu(self.menubar)
+        self.menuCommit.setObjectName("menuCommit")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.actionCreate = QtWidgets.QAction(MainWindow)
+        self.actionCreate.setObjectName("actionCreate")
+        self.actionCheckout = QtWidgets.QAction(MainWindow)
+        self.actionCheckout.setObjectName("actionCheckout")
+        self.actionRename = QtWidgets.QAction(MainWindow)
+        self.actionRename.setObjectName("actionRename")
+        self.actionNew_commit = QtWidgets.QAction(MainWindow)
+        self.actionNew_commit.setObjectName("actionNew_commit")
+        self.actionAmmend_last_commit = QtWidgets.QAction(MainWindow)
+        self.actionAmmend_last_commit.setObjectName("actionAmmend_last_commit")
+        self.actionExplore_Working_Directory = QtWidgets.QAction(MainWindow)
+        self.actionExplore_Working_Directory.setObjectName("actionExplore_Working_Directory")
+        self.menuRepository.addAction(self.actionExplore_Working_Directory)
+        self.menuBranch.addAction(self.actionCreate)
+        self.menuBranch.addAction(self.actionCheckout)
+        self.menuBranch.addAction(self.actionRename)
+        self.menuCommit.addAction(self.actionNew_commit)
+        self.menuCommit.addAction(self.actionAmmend_last_commit)
+        self.menubar.addAction(self.menuRepository.menuAction())
+        self.menubar.addAction(self.menuBranch.menuAction())
+        self.menubar.addAction(self.menuCommit.menuAction())
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.console_output.setPlainText(_translate("MainWindow", ""))
+        self.label_console_manual.setText(_translate("MainWindow", "Manual command input"))
+        self.console_input.setText(_translate("MainWindow", ""))
+        self.menuRepository.setTitle(_translate("MainWindow", "Repository"))
+        self.menuBranch.setTitle(_translate("MainWindow", "Branch"))
+        self.menuCommit.setTitle(_translate("MainWindow", "Commit"))
+        self.actionCreate.setText(_translate("MainWindow", "Create"))
+        self.actionCheckout.setText(_translate("MainWindow", "Checkout"))
+        self.actionRename.setText(_translate("MainWindow", "Rename"))
+        self.actionNew_commit.setText(_translate("MainWindow", "New commit"))
+        self.actionAmmend_last_commit.setText(_translate("MainWindow", "Ammend Last Commit"))
+        self.actionExplore_Working_Directory.setText(_translate("MainWindow", "Explore Working Directory"))
+
