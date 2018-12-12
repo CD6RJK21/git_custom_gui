@@ -15,6 +15,21 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
         self.actionExplore_Working_Directory.triggered.connect(core.explore_working_directory)
         self.actionCreate.triggered.connect(self.create_branch)
         self.actionCheckout.triggered.connect(self.checkout_branch)
+        self.actionRename.triggered.connect(self.rename_branch)
+        # self.actionCommit_All.triggered.connect(self.commit_all)
+        self.actionAmmend_last_commit.triggered.connect(self.view_log)
+
+    def view_log(self):
+        core.view_log(self)
+
+    # def commit_all(self):
+    #     core.new_commit_all(self)
+
+    # def new_commit(self):
+    #     core.new_commit()
+
+    def rename_branch(self):
+        core.rename_branch(self)
 
     def checkout_branch(self):
         core.checkout_branch(self)

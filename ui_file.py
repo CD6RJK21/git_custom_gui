@@ -86,5 +86,5 @@ class Ui_MainWindow(object):
         self.actionCheckout.setText(_translate("MainWindow", "Checkout"))
         self.actionRename.setText(_translate("MainWindow", "Rename"))
         self.actionNew_commit.setText(_translate("MainWindow", "New commit"))
-        self.actionAmmend_last_commit.setText(_translate("MainWindow", "Ammend Last Commit"))
+        self.actionAmmend_last_commit.setText(_translate("MainWindow", "Amend Last Commit"))
         self.actionExplore_Working_Directory.setText(_translate("MainWindow", "Explore Working Directory"))
