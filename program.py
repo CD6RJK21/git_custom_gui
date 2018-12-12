@@ -29,7 +29,7 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
     #     core.new_commit()
 
     def rename_branch(self):
-        core.rename_branch(self)
+        core.rename_current_branch(self)
 
     def checkout_branch(self):
         core.checkout_branch(self)

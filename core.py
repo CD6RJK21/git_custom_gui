@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys
-from subprocess import call, check_output, Popen, PIPE, STDOUT
+from subprocess import Popen, PIPE, STDOUT
 from PyQt5.QtWidgets import QInputDialog, QMessageBox
 
 sys._excepthook = sys.excepthook
@@ -50,6 +50,8 @@ def execute(obj, command):  # v2
         output_to_plain_text(obj, '>>{}\n'.format(command) + 'CalledProcessError')
     except FileNotFoundError as fnfe:
         output_to_plain_text(obj, '>>{}\n'.format(command) + 'FileNotFoundError')
+    except BaseException as be:
+        output_to_plain_text(obj, '>>{}\n'.format(command) + str(be))
 
 
 def explore_working_directory():
@@ -62,7 +64,9 @@ def create_branch(widget):
         widget, "Create Branch", "Enter branch name:"
     )
     if okBtnPressed:
-        output_to_plain_text(widget, str(check_output(['git', 'branch', branch_name]), encoding='utf-8'))
+        reply = Popen('git branch {}'.format(branch_name), shell=True, stdout=PIPE, stderr=STDOUT)
+        reply = str(reply.stdout.read(), encoding='utf-8')
+        output_to_plain_text(widget, reply)
 
 
 def checkout_branch(widget):
@@ -70,27 +74,34 @@ def checkout_branch(widget):
         widget, "Checkout Branch", "Enter branch name:"
     )
     if okBtnPressed:
-        output_to_plain_text(widget, str(check_output(['git', 'checkout', branch_name]), encoding='utf-8'))
+        reply = Popen(' '.join(['git', 'checkout', branch_name]), shell=True, stdout=PIPE, stderr=STDOUT)
+        reply = str(reply.stdout.read(), encoding='utf-8')
+        output_to_plain_text(widget, reply)
 
 
-def rename_branch(widget):
+def rename_current_branch(widget):
     branch_name, okBtnPressed = QInputDialog.getText(
-        widget, "Rename Branch", "Enter new branch name:"
+        widget, "Rename Current Branch", "Enter new branch name:"
     )
     if okBtnPressed:
-        output_to_plain_text(widget, str(check_output(['git', 'checkout', branch_name]), encoding='utf-8'))
+        reply = Popen(' '.join(['git', 'branch', '-m', branch_name]), shell=True, stdout=PIPE, stderr=STDOUT)
+        reply = str(reply.stdout.read(), encoding='utf-8')
+        output_to_plain_text(widget, reply)
 
 
-def new_commit_all(message):
-    call(['git', 'commit', '-a', '-m', '"{}"'.format(message)])
+
+# def new_commit_all(message):
+#     call(['git', 'commit', '-a', '-m', '"{}"'.format(message)])
 
 
-def new_commit(file_name, message):
-    call(['git', 'commit', '"{}"'.format(file_name), '-m', '"{}"'.format(message)])
+# def new_commit(file_name, message):
+#     call(['git', 'commit', '"{}"'.format(file_name), '-m', '"{}"'.format(message)])
 
 
 def view_log(widget):
-    QMessageBox.about(widget, 'Log View', str(check_output(['git', 'log', '--all', '--graph']), encoding='utf-8'))
+    reply = Popen(' '.join(['git', 'log', '--all', '--graph']), shell=True, stdout=PIPE, stderr=STDOUT)
+    reply = str(reply.stdout.read(), encoding='utf-8')
+    QMessageBox.about(widget, 'Log View', reply)
 
 
 def read_file(file_name):
