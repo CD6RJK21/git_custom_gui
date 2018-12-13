@@ -4,43 +4,9 @@ from subprocess import Popen, PIPE, STDOUT
 from PyQt5.QtWidgets import QInputDialog, QMessageBox, QFileDialog
 
 
-# sys._excepthook = sys.excepthook
-
-
-# def exception_hook(exctype, value, traceback):
-#     print(exctype, value, traceback)
-#     sys._excepthook(exctype, value, traceback)
-#     QMessageBox.warning('Warning', 'Error: {}; {}; {}'.format(str(exctype), str(value), str(traceback)))
-#     return str(exctype) + str(value) + str(traceback)
-#     sys.exit(1)
-
-
-# sys.excepthook = exception_hook
-
-
-# class writer(object):
-#     def write(self, data):
-#         global err_str
-#         err_str = ''
-#         err_str += data
-#
-#
-# sys.stderr = writer()
-
-
 def output_to_plain_text(obj, messege):
     obj.console_output.appendPlainText(messege + '\n' + ('-' * 52) + '\n')
 
-
-# def execute(obj, command):  # v1
-#     import subprocess
-#     try:
-#         output_to_plain_text(obj, '>>{}\n'.format(command) +
-#                              str(check_output(command.split(), shell=True), encoding='utf-8'))
-#     except subprocess.CalledProcessError as e:
-#         output_to_plain_text(obj, '>>{}\n'.format(command) + str(e))
-#     except FileNotFoundError as fnfe:
-#         output_to_plain_text(obj, '>>{}\n'.format(command) + str(fnfe))
 
 def execute(obj, command):  # v2
     import subprocess
@@ -151,7 +117,6 @@ def view_file(widget, file_name):
     reply = Popen(' '.join(['git', 'show', '"{}"'.format(file_name)]), shell=True, stdout=PIPE, stderr=STDOUT)
     reply = str(reply.stdout.read(), encoding='utf-8')
     widget.plainTextEdit_2.setPlainText(reply)
-
 
 
 def view_log(widget):
