@@ -6,7 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -136,12 +137,6 @@ class Ui_MainWindow(object):
         self.actionView_Log.setObjectName("actionView_Log")
         self.actionSelect_Working_Directory = QtWidgets.QAction(MainWindow)
         self.actionSelect_Working_Directory.setObjectName("actionSelect_Working_Directory")
-        self.actionRefresh_F5 = QtWidgets.QAction(MainWindow)
-        self.actionRefresh_F5.setCheckable(False)
-        self.actionRefresh_F5.setObjectName("actionRefresh_F5")
-        self.actionAuto_Refresh_F6 = QtWidgets.QAction(MainWindow)
-        self.actionAuto_Refresh_F6.setCheckable(True)
-        self.actionAuto_Refresh_F6.setObjectName("actionAuto_Refresh_F6")
         self.menuRepository.addAction(self.actionSelect_Working_Directory)
         self.menuRepository.addAction(self.actionExplore_Working_Directory)
         self.menuRepository.addAction(self.actionView_Log)
@@ -178,5 +173,3 @@ class Ui_MainWindow(object):
         self.actionRename_2.setText(_translate("MainWindow", "Rename"))
         self.actionView_Log.setText(_translate("MainWindow", "View Log"))
         self.actionSelect_Working_Directory.setText(_translate("MainWindow", "Select Working Directory"))
-        self.actionRefresh_F5.setText(_translate("MainWindow", "Refresh (F5)"))
-        self.actionAuto_Refresh_F6.setText(_translate("MainWindow", "Auto-Refresh (F6)"))

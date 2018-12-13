@@ -1,8 +1,10 @@
 # coding: utf-8
 import sys
-import core
-from PyQt5.QtWidgets import QApplication, QMainWindow
+
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QMainWindow
+
+import core
 from ui_file import Ui_MainWindow
 
 
