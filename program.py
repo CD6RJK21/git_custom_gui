@@ -8,25 +8,25 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.initUI()
+        self.run()
 
-    def initUI(self):
+    def run(self):
         self.console_input.returnPressed.connect(self.execute_command)
         self.actionExplore_Working_Directory.triggered.connect(core.explore_working_directory)
         self.actionCreate.triggered.connect(self.create_branch)
         self.actionCheckout.triggered.connect(self.checkout_branch)
         self.actionRename.triggered.connect(self.rename_branch)
-        # self.actionCommit_All.triggered.connect(self.commit_all)
-        self.actionAmmend_last_commit.triggered.connect(self.view_log)
+        self.actionView_Log.triggered.connect(self.view_log)  # too height window
+        self.commitButton.clicked.connect(self.commit)
 
     def view_log(self):
         core.view_log(self)
 
-    # def commit_all(self):
-    #     core.new_commit_all(self)
-
-    # def new_commit(self):
-    #     core.new_commit()
+    def commit(self):
+        if self.commit_all.isChecked:
+            core.commit_all(self, self.commitMessege.toPlainText())
+        else:
+            core.commit(self, self.commit_one_file_name.text(), self.commitMessege.toPlainText())
 
     def rename_branch(self):
         core.rename_current_branch(self)
