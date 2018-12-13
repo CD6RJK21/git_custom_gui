@@ -1,6 +1,8 @@
+# coding: utf-8
 import sys
 import core
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtCore import Qt
 from ui_file import Ui_MainWindow
 
 
@@ -8,6 +10,8 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.display_current_branch()
+        self.refresh_tracked_files()
         self.run()
 
     def run(self):
@@ -18,6 +22,30 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
         self.actionRename.triggered.connect(self.rename_branch)
         self.actionView_Log.triggered.connect(self.view_log)  # too height window
         self.commitButton.clicked.connect(self.commit)
+        self.actionSelect_Working_Directory.triggered.connect(self.select_working_directory)
+        self.comboBox.activated[str].connect(self.view_file)
+        self.pushButton.clicked.connect(self.refresh)
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_F5:
+            self.refresh()
+
+    def refresh(self):
+        self.display_current_branch()
+        self.refresh_tracked_files()
+
+    def view_file(self, file_name):
+        core.view_file(self, file_name)
+
+    def refresh_tracked_files(self):
+        core.refresh_tracked_files(self)
+
+    def display_current_branch(self):
+        self.current_branch.setText('Current Branch: {}'.format(core.current_branch_name()))
+
+    def select_working_directory(self):
+        core.select_working_directory(self)
+        self.refresh()
 
     def view_log(self):
         core.view_log(self)

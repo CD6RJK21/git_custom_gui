@@ -1,19 +1,18 @@
 # coding: utf-8
-import sys
 from subprocess import Popen, PIPE, STDOUT
 
-from PyQt5.QtWidgets import QInputDialog, QMessageBox
+from PyQt5.QtWidgets import QInputDialog, QMessageBox, QFileDialog
 
 
 # sys._excepthook = sys.excepthook
 
 
 # def exception_hook(exctype, value, traceback):
-    # print(exctype, value, traceback)
-    # sys._excepthook(exctype, value, traceback)
-# QMessageBox.warning('Warning', 'Error: {}; {}; {}'.format(str(exctype), str(value), str(traceback)))
-# return str(exctype) + str(value) + str(traceback)
-    # sys.exit(1)
+#     print(exctype, value, traceback)
+#     sys._excepthook(exctype, value, traceback)
+#     QMessageBox.warning('Warning', 'Error: {}; {}; {}'.format(str(exctype), str(value), str(traceback)))
+#     return str(exctype) + str(value) + str(traceback)
+#     sys.exit(1)
 
 
 # sys.excepthook = exception_hook
@@ -30,7 +29,7 @@ from PyQt5.QtWidgets import QInputDialog, QMessageBox
 
 
 def output_to_plain_text(obj, messege):
-    obj.console_output.appendPlainText(messege + '\n' + ('-' * 88) + '\n')
+    obj.console_output.appendPlainText(messege + '\n' + ('-' * 52) + '\n')
 
 
 # def execute(obj, command):  # v1
@@ -112,6 +111,47 @@ def commit(widget, file_name, message):
                   stdout=PIPE, stderr=STDOUT)
     reply = str(reply.stdout.read(), encoding='utf-8')
     output_to_plain_text(widget, reply)
+
+
+def select_working_directory(widget):
+    from os import chdir
+    try:
+        path = QFileDialog.getExistingDirectory(widget, "Select Working Directory", "")
+        chdir(path)
+    except BaseException as be:
+        # QMessageBox.warning(widget, 'Warning', 'Error: {}'.format(str(be)))
+        pass
+
+
+def current_branch_name():
+    names = Popen(' '.join(['git', 'branch']), shell=True, stdout=PIPE, stderr=STDOUT)
+    names = str(names.stdout.read(), encoding='utf-8').split('\n')
+    names1 = ''
+    for name in names:
+        if name.startswith('*'):
+            name = name[1:].strip()
+            names1 = name[:]
+    return names1
+
+
+def refresh_tracked_files(widget):
+    names = Popen('git ls-tree --full-tree -r --name-only HEAD', shell=True, stdout=PIPE, stderr=STDOUT)
+    names = str(names.stdout.read(), encoding='utf-8').split('\n')
+    names1 = []
+    for name in names:
+        if name.startswith('*'):
+            name = name[1:]
+        if not name == '':
+            names1.append(name.strip())
+    widget.comboBox.clear()
+    widget.comboBox.addItems(names1)
+
+
+def view_file(widget, file_name):
+    reply = Popen(' '.join(['git', 'show', '"{}"'.format(file_name)]), shell=True, stdout=PIPE, stderr=STDOUT)
+    reply = str(reply.stdout.read(), encoding='utf-8')
+    widget.plainTextEdit_2.setPlainText(reply)
+
 
 
 def view_log(widget):
