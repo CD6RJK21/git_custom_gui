@@ -1,7 +1,7 @@
 # coding: utf-8
 import sys
-from PyQt5.QtWidgets import QInputDialog, QMessageBox, QFileDialog
 from subprocess import Popen, PIPE, STDOUT
+from PyQt5.QtWidgets import QInputDialog, QMessageBox, QFileDialog
 
 sys._excepthook = sys.excepthook
 
