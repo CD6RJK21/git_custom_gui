@@ -132,7 +132,7 @@ def view_file(widget, file_name):
     widget.plainTextEdit_2.setPlainText(reply)
 
 
-def view_log(widget):
+def view_log():
     reply = Popen(' '.join(['git', 'log', '--all', '--graph']), shell=True, stdout=PIPE, stderr=STDOUT)
     reply = str(reply.stdout.read(), encoding='utf-8')
     log = ScrollMessageBox(QMessageBox.Critical, "Log View", reply)

@@ -62,7 +62,7 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
         self.refresh()
 
     def view_log(self):
-        core.view_log(self)
+        core.view_log()
 
     def commit(self):
         if self.commit_all.isChecked:
