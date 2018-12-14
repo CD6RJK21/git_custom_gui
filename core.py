@@ -1,6 +1,7 @@
 # coding: utf-8
 import sys
 from subprocess import Popen, PIPE, STDOUT
+
 from PyQt5.QtWidgets import QInputDialog, QMessageBox, QFileDialog
 
 sys._excepthook = sys.excepthook
@@ -132,10 +133,28 @@ def view_file(widget, file_name):
 def view_log(widget):
     reply = Popen(' '.join(['git', 'log', '--all', '--graph']), shell=True, stdout=PIPE, stderr=STDOUT)
     reply = str(reply.stdout.read(), encoding='utf-8')
-    QMessageBox.about(widget, 'Log View', reply)
+    log = ScrollMessageBox(QMessageBox.Critical, "Log View", reply)
+    # QMessageBox.about(widget, 'Log View', reply)
 
 
 def read_file(file_name):
     with open(file_name, 'r') as file:
         text = file.read()
     return text
+
+
+class ScrollMessageBox(QMessageBox):
+    def __init__(self, *args, **kwargs):
+        from PyQt5.QtWidgets import QScrollArea, QGridLayout, QLabel
+        QMessageBox.__init__(self, *args, **kwargs)
+        chldn = self.children()
+        scrll = QScrollArea(self)
+        scrll.setWidgetResizable(True)
+        grd = self.findChild(QGridLayout)
+        lbl = QLabel(chldn[1].text(), self)
+        lbl.setWordWrap(True)
+        scrll.setWidget(lbl)
+        scrll.setMinimumSize(400, 600)
+        grd.addWidget(scrll, 0, 1)
+        chldn[1].setText('')
+        self.exec_()
