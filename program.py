@@ -35,8 +35,10 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
     def refresh(self):
         self.display_current_branch()
         self.refresh_tracked_files()
+        self.comboBox.activated[str].connect(self.view_file)
 
     def view_file(self, file_name):
+        self.label_3.setText('File: {}'.format(file_name))
         core.view_file(self, file_name)
 
     def refresh_tracked_files(self):

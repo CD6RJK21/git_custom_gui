@@ -12,15 +12,6 @@ def exception_hook(exctype, value, traceback):
 
 sys.excepthook = exception_hook
 
-sys._excepthook = sys.excepthook
-
-
-def exception_hook(exctype, value, traceback):
-    return str(exctype) + str(value) + str(traceback)
-
-
-sys.excepthook = exception_hook
-
 
 def output_to_plain_text(obj, messege):
     obj.console_output.appendPlainText(messege + '\n' + ('-' * 52) + '\n')
