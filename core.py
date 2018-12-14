@@ -136,7 +136,6 @@ def view_log(widget):
     reply = Popen(' '.join(['git', 'log', '--all', '--graph']), shell=True, stdout=PIPE, stderr=STDOUT)
     reply = str(reply.stdout.read(), encoding='utf-8')
     log = ScrollMessageBox(QMessageBox.Critical, "Log View", reply)
-    # QMessageBox.about(widget, 'Log View', reply)
 
 
 def read_file(file_name):
