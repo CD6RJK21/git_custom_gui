@@ -69,12 +69,15 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
             core.commit_all(self, self.commitMessege.toPlainText())
         else:
             core.commit(self, self.commit_one_file_name.text(), self.commitMessege.toPlainText())
+        self.refresh()
 
     def rename_branch(self):
         core.rename_current_branch(self)
+        self.refresh()
 
     def checkout_branch(self):
         core.checkout_branch(self)
+        self.refresh()
 
     def create_branch(self):
         core.create_branch(self)

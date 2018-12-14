@@ -54,7 +54,9 @@ def checkout_branch(widget):
     for name in names:
         if name.startswith('*'):
             name = name[1:]
-        names1.append(name.strip())
+        name = name.strip()
+        if name != '':
+            names1.append(name)
     names = tuple(names1)
     branch_name, okBtnPressed = QInputDialog.getItem(
         widget, "Checkout Branch", "Select branch :", names, 1
