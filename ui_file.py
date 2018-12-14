@@ -91,7 +91,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_2.setPlainText("")
         self.plainTextEdit_2.setObjectName("plainTextEdit_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(380, 20, 21, 20))
+        self.label_3.setGeometry(QtCore.QRect(250, 20, 130, 20))
         self.label_3.setObjectName("label_3")
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(0, 40, 181, 20))
