@@ -161,7 +161,7 @@ class Ui_MainWindow(object):
         self.commit_one_file.setText(_translate("MainWindow", "Commit One File"))
         self.label_commit_one_file.setText(_translate("MainWindow", "File name:"))
         self.label_3.setText(_translate("MainWindow", "File:"))
-        self.label_2.setText(_translate("MainWindow", "Tracked Files:"))
+        self.label_2.setText(_translate("MainWindow", "Modified Files:"))
         self.current_branch.setText(_translate("MainWindow", "Current Branch:"))
         self.pushButton.setText(_translate("MainWindow", "Refresh ↺"))
         self.menuRepository.setTitle(_translate("MainWindow", "Repository"))
