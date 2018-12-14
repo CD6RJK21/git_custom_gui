@@ -110,7 +110,8 @@ def current_branch_name():
 
 
 def refresh_tracked_files(widget):
-    names = Popen('git ls-tree --full-tree -r --name-only HEAD', shell=True, stdout=PIPE, stderr=STDOUT)
+    # names = Popen('git ls-tree --full-tree -r --name-only HEAD', shell=True, stdout=PIPE, stderr=STDOUT)
+    names = Popen('git ls-files -m', shell=True, stdout=PIPE, stderr=STDOUT)
     names = str(names.stdout.read(), encoding='utf-8').split('\n')
     names1 = []
     for name in names:
@@ -123,7 +124,7 @@ def refresh_tracked_files(widget):
 
 
 def view_file(widget, file_name):
-    reply = Popen(' '.join(['git', 'show', '"{}"'.format(file_name)]), shell=True, stdout=PIPE, stderr=STDOUT)
+    reply = Popen(' '.join(['git', 'diff', '"{}"'.format(file_name)]), shell=True, stdout=PIPE, stderr=PIPE)
     reply = str(reply.stdout.read(), encoding='utf-8')
     widget.plainTextEdit_2.setPlainText(reply)
 

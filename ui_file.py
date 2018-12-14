@@ -83,6 +83,8 @@ class Ui_MainWindow(object):
         self.commit_one_file_name.setMinimumSize(QtCore.QSize(0, 20))
         self.commit_one_file_name.setClearButtonEnabled(False)
         self.commit_one_file_name.setObjectName("commit_one_file_name")
+        self.commit_one_file_name.hide()
+        self.label_commit_one_file.hide()
         self.plainTextEdit_2 = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.plainTextEdit_2.setGeometry(QtCore.QRect(180, 40, 451, 401))
         self.plainTextEdit_2.setReadOnly(True)

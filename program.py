@@ -27,6 +27,16 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
         self.actionSelect_Working_Directory.triggered.connect(self.select_working_directory)
         self.comboBox.activated[str].connect(self.view_file)
         self.pushButton.clicked.connect(self.refresh)
+        self.commit_all.toggled.connect(self.display_commit_one_file)
+        self.commit_one_file.toggled.connect(self.display_commit_one_file)
+
+    def display_commit_one_file(self):
+        if self.commit_one_file.isChecked():
+            self.commit_one_file_name.show()
+            self.label_commit_one_file.show()
+        else:
+            self.commit_one_file_name.hide()
+            self.label_commit_one_file.hide()
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_F5:
@@ -35,7 +45,7 @@ class GitCustomGui(QMainWindow, Ui_MainWindow):
     def refresh(self):
         self.display_current_branch()
         self.refresh_tracked_files()
-        self.comboBox.activated[str].connect(self.view_file)
+        self.view_file(self.comboBox.currentText())
 
     def view_file(self, file_name):
         self.label_3.setText('File: {}'.format(file_name))
