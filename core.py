@@ -96,7 +96,7 @@ def select_working_directory(widget):
     try:
         path = QFileDialog.getExistingDirectory(widget, "Select Working Directory", "")
         chdir(path)
-    except BaseException as be:
+    except OSError as be:
         # QMessageBox.warning(widget, 'Warning', 'Error: {}'.format(str(be)))
         pass
 
